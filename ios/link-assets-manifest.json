@@ -1,0 +1,77 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Jost-Black.ttf",
+      "sha1": "703b278986170ee376c791e16ecb381a2c3679c5"
+    },
+    {
+      "path": "assets/fonts/Jost-BlackItalic.ttf",
+      "sha1": "e52d329fd5578d1045538b3a661d66d996faff50"
+    },
+    {
+      "path": "assets/fonts/Jost-Bold.ttf",
+      "sha1": "03ff01bdda0a0fb7c9efb436ff846a254ae7691e"
+    },
+    {
+      "path": "assets/fonts/Jost-BoldItalic.ttf",
+      "sha1": "0e2e80977fcde87c3dbb6868018dedd90bd20e49"
+    },
+    {
+      "path": "assets/fonts/Jost-ExtraBold.ttf",
+      "sha1": "6cec05a0f036209249b59d10544b372b3e055969"
+    },
+    {
+      "path": "assets/fonts/Jost-ExtraBoldItalic.ttf",
+      "sha1": "e1b863a9bde84220a80a7d37107508080530f34c"
+    },
+    {
+      "path": "assets/fonts/Jost-ExtraLight.ttf",
+      "sha1": "34f24476b8b82d168cefaa7e3e6262019c41876e"
+    },
+    {
+      "path": "assets/fonts/Jost-ExtraLightItalic.ttf",
+      "sha1": "d57c0cb67eea1a24d94778075d3c522df4f8fa0b"
+    },
+    {
+      "path": "assets/fonts/Jost-Italic.ttf",
+      "sha1": "9847f60567d3149446862bf38ed941e964cac9a7"
+    },
+    {
+      "path": "assets/fonts/Jost-Light.ttf",
+      "sha1": "5d793e66ad9ec63f95c9dc3f9b77a1f98f2387b4"
+    },
+    {
+      "path": "assets/fonts/Jost-LightItalic.ttf",
+      "sha1": "bdfdf79b8075f55608feef7fb0af84ad68a6c161"
+    },
+    {
+      "path": "assets/fonts/Jost-Medium.ttf",
+      "sha1": "82a7ae9626c22c13919e74e6e6394a6c37513695"
+    },
+    {
+      "path": "assets/fonts/Jost-MediumItalic.ttf",
+      "sha1": "89e3eee0bed1c94aa143887b2e447ff93f4f5ab0"
+    },
+    {
+      "path": "assets/fonts/Jost-Regular.ttf",
+      "sha1": "fd03d18e64f807a056a6388171c259ec6c3a97bd"
+    },
+    {
+      "path": "assets/fonts/Jost-SemiBold.ttf",
+      "sha1": "c35ced7c9fb59a5d1e50abf0a64c526fb1fca21c"
+    },
+    {
+      "path": "assets/fonts/Jost-SemiBoldItalic.ttf",
+      "sha1": "1a508a65805c21c29eee660072bc78bf54813059"
+    },
+    {
+      "path": "assets/fonts/Jost-Thin.ttf",
+      "sha1": "5335e254a07486908ec3f29a99e8c0054da52d12"
+    },
+    {
+      "path": "assets/fonts/Jost-ThinItalic.ttf",
+      "sha1": "d2ecf15872f67a81c7e65db25f8cde8612301c1e"
+    }
+  ]
+}
