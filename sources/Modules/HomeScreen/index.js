@@ -50,7 +50,7 @@ const HomeScreen = (props) => {
         if (dataCategory.map((e, i) => i == index)) {
             setActiveCategory(data)
         }
-        if (index == activeCategory.id) {
+        if (activeCategory.id == index) {
             setActiveCategory(0)
         }
     }

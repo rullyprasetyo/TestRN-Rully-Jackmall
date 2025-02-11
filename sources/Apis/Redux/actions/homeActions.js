@@ -19,9 +19,13 @@ export const getJokes = (query, params) => dispatch => {
     const endpoint = ENDPOINTS.jokes + params + '?' + queryString
     return new Promise((resolve, reject) => {
         GET_REQ(endpoint).then(response => {
-            resolve(dispatch(setJokes(response.data.jokes)));
-            if (response.data.jokes.length > 2) {
-                ToastMessage({ type: 'success', textTitle: 'Success', textMessage: 'Jokes successfully added' })
+            if (response.status == 200) {
+                resolve(dispatch(setJokes(response.data.jokes)));
+                if (response.data.jokes.length > 2) {
+                    ToastMessage({ type: 'success', textTitle: 'Success', textMessage: 'Jokes successfully added' })
+                }
+            } else {
+                ToastMessage({ type: 'error', textTitle: 'Failed', textMessage: response.data.message.toString() })
             }
         }).catch(error => {
             reject(error)
