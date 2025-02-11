@@ -10,48 +10,58 @@ const HomeScreen = (props) => {
     //state
     const dispatch = useDispatch()
     const { dataCategory, dataJokes } = useSelector((state) => state.home)
-    const [activeCategory, setActiveCategory] = useState(0)
+    const [activeCategory, setActiveCategory] = useState({ id: 0, category: 'Any' })
     const [selectedJokes, setSelectedJokes] = useState('')
     const [updateCategory, setUpdateCategory] = useState(false)
     const [refresh, setRefresh] = useState(false)
     const [activeModal, setActiveModal] = useState(false)
-    const jokesParams = { type: "single", amount: 2 }
+    let jokesQuery = { type: "single", amount: 2 }
+    let jokesParams = "Any"
 
     //effect
     useEffect(() => {
         dispatch(getCategories());
-        dispatch(getJokes(jokesParams));
+        dispatch(getJokes(jokesQuery, jokesParams));
     }, [])
 
     //handler
-    const handlerPin = (data) => {
+    const handlerPin = (item) => {
+        let data = {
+            id: 0,
+            category: item
+        }
         let arr = [...dataCategory]
         arr.map((categories, i) => {
-            if (categories === data) {
+            if (categories === item) {
                 arr.splice(i, 1);
                 arr.unshift(categories)
             }
         });
         dispatch(setCategory(arr))
-        setActiveCategory(0)
+        setActiveCategory(data)
         setUpdateCategory(!updateCategory)
     }
 
-    const handlerExpand = (index) => {
-        if (dataCategory.map((e, i) => i == index)) {
-            setActiveCategory(index)
+    const handlerExpand = (index, item) => {
+        let data = {
+            id: index,
+            category: item
         }
-        if (activeCategory == index) {
-            setActiveCategory(null)
+        if (dataCategory.map((e, i) => i == index)) {
+            setActiveCategory(data)
+        }
+        if (index == activeCategory.id) {
+            setActiveCategory(0)
         }
     }
 
     const handlerMoreJokes = () => {
-        let params = {
+        let query = {
             type: "single",
             amount: dataJokes.length + 2
         }
-        dispatch(getJokes(params))
+        let params = activeCategory.category
+        dispatch(getJokes(query, params))
     }
 
     const handlerModalJokes = (jokes) => {
@@ -61,8 +71,8 @@ const HomeScreen = (props) => {
 
     const handlerRefresh = () => {
         dispatch(getCategories());
-        dispatch(getJokes(jokesParams));
-        setActiveCategory(0)
+        dispatch(getJokes(jokesQuery, jokesParams));
+        setActiveCategory({ id: 0, category: 'Any' })
     }
 
     //render
@@ -86,17 +96,17 @@ const HomeScreen = (props) => {
                     <TouchableOpacity disabled={topValidation} style={topValidation ? styles.buttonCategoryTop : styles.buttonCategory} onPress={() => handlerPin(item.item)}>
                         <Text style={topValidation ? styles.textButtonWhite : styles.textButtonRed}>{topValidation ? 'Pinned' : 'Pin'}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => handlerExpand(item.index)}>
+                    <TouchableOpacity onPress={() => handlerExpand(item.index, item.item)}>
                         <Icon
                             type='ionicon'
-                            name={item.index == activeCategory ? 'chevron-up-outline' : 'chevron-down-outline'}
+                            name={item.index == activeCategory.id ? 'chevron-up-outline' : 'chevron-down-outline'}
                             size={25}
                             color='#FF1A4D'
                         />
                     </TouchableOpacity>
                 </View>
                 {
-                    item.index == activeCategory ?
+                    item.index == activeCategory.id ?
                         <View>
                             <View style={styles.divider} />
                             <FlatList
@@ -130,10 +140,10 @@ const HomeScreen = (props) => {
 
     const renderModalJokes = () => {
         return (
-            <ModalJokes 
-            visible={activeModal}
-            jokes={selectedJokes}
-            onClose={() => setActiveModal(!activeModal)}
+            <ModalJokes
+                visible={activeModal}
+                jokes={selectedJokes}
+                onClose={() => setActiveModal(!activeModal)}
             />
         )
     }
@@ -142,7 +152,7 @@ const HomeScreen = (props) => {
         <SafeAreaView style={styles.container}>
             {renderHeader()}
             <View style={styles.contentWrap}>
-            {renderModalJokes()}
+                {renderModalJokes()}
                 <FlatList
                     data={dataCategory}
                     extraData={updateCategory}

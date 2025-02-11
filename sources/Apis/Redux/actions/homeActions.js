@@ -14,9 +14,9 @@ export const getCategories = () => dispatch => {
     })
 }
 
-export const getJokes = (props) => dispatch => {
-    const queryString = new URLSearchParams(props).toString()
-    const endpoint = ENDPOINTS.jokes + queryString
+export const getJokes = (query, params) => dispatch => {
+    const queryString = new URLSearchParams(query).toString()
+    const endpoint = ENDPOINTS.jokes + params + '?' + queryString
     return new Promise((resolve, reject) => {
         GET_REQ(endpoint).then(response => {
             resolve(dispatch(setJokes(response.data.jokes)));
